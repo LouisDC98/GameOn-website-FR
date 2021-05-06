@@ -157,6 +157,7 @@ main {
   font-size: 16px;
 }
 
+/* Class which is applied on the modal */
 .bground {
   display: none;
   position: fixed;
@@ -167,6 +168,11 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+}
+
+
+.bground--visible {
+  display: block;
 }
 
 .content {
