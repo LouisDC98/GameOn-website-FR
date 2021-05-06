@@ -7,17 +7,20 @@ function editNav() {
   }
 }
 
-// DOM Elements
+/****************************************************************/
+/**********************Open and close modal**********************/
+/****************************************************************/
+
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const closeModalBtn = document.getElementById('close');   // Define X button as 'close' 
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
+closeModalBtn.addEventListener('click', closeModal);      // Call function closeModal when X pressed
 
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
+/*****************Add or remove the bground class*****************/
+function closeModal () {
+  modalbg.classList.toggle('bground--visible');
 }
-
-
