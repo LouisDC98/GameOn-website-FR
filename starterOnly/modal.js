@@ -79,15 +79,13 @@ function validateCheckbox() {
 
 /*****************Enable or disable the submit button*****************/
 /**************All boxes must be valid to enable button***************/
-function validate() {
-  let result = 1;
-  result &= validateFirst();
-  result &= validateLast();
-  result &= validateEmail();
-  result &= validateBirthDate();
-  result &= validateTournois();
-  result &= validateLocation();
-  result &= validateCheckbox();
+function isValid() {
 
-  return result !== 0;
+  return !!(validateFirst()
+  & validateLast()
+  & validateEmail()
+  & validateBirthDate()
+  & validateTournois()
+  & validateLocation()
+  & validateCheckbox());
 }
