@@ -5,6 +5,7 @@
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="errors.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans"
@@ -73,6 +74,7 @@
                   name="first"
                   minlength="2"
                 /><br>
+                <span class="errors" id="messageFirst">Veuillez entrer 2 caractères ou plus pour le champ du prénom.</span>
               </div>
               <div
                 class="formData">
@@ -83,6 +85,7 @@
                   id="last"
                   name="last"
                 /><br>
+                <span class="errors" id="messageLast">Veuillez entrer 2 caractères ou plus pour le champ du nom.</span>
               </div>
               <div
                 class="formData">
@@ -93,6 +96,7 @@
                   id="email"
                   name="email"
                 /><br>
+                <span class="errors" id="messageEmail">Veuillez entrer une adresse valide.</span>
               </div>
               <div
                 class="formData">
@@ -103,11 +107,13 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
+                <span class="errors" id="messageBirthdate">Vous devez entrer votre date de naissance.</span>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <span class="errors" id="messageTournois">Veuillez renseigner ce champ.</span>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
@@ -178,6 +184,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <span class="errors" id="messageLocation">Vous devez choisir une option.</span>
               </div>
 
               <div
@@ -199,6 +206,7 @@
                   Je Je souhaite être prévenu des prochains évènements.
                 </label>
                 <br>
+                <span class="errors" id="messageCheckbox">Vous devez vérifier que vous acceptez les termes et conditions</span>
               </div>
               <input
                 class="btn-submit"
