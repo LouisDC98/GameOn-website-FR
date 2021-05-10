@@ -1,0 +1,16 @@
+.errors {
+    display: none;
+}
+
+.errors--off {
+    display: inline;
+    background-color: transparent;
+    color: red;
+    font-size: 0.8rem;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+.text-control--off {
+    border: 2px solid red;
+}
