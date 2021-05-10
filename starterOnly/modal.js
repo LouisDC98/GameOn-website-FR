@@ -41,7 +41,10 @@ const location3 = document.getElementById('location3');        // Define radio 3
 const location4 = document.getElementById('location4');        // Define radio 4 as 'location4'
 const location5 = document.getElementById('location5');        // Define radio 5 as 'location5'
 const location6 = document.getElementById('location6');        // Define radio 6 as 'location6'
+const locationField = document.getElementById('location');  
 const checkbox1 = document.getElementById('checkbox1');        // Define checkbox 1 as 'checkbox1'
+const checkboxField = document.getElementById('checkbox');  
+
 
 // Regex which accept mail format
 const formatMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/; 
@@ -58,98 +61,72 @@ let errorBirthdate = document.getElementById ('messageBirthdate');
 let errorTournois = document.getElementById ('messageTournois');
 let errorLocation = document.getElementById ('messageLocation');
 let errorCheckbox = document.getElementById ('messageCheckbox');
-let submitBtn = document.getElementById ('subBtn');
 
+ function updateErrorMessage(valueField, errorField, isValid) {
+   if (isValid) {
+     errorField.classList.remove('errors--off');
+     valueField.classList.remove('text-control--off');
+   }
+   else {
+    if (!errorField.classList.contains('errors--off')){
+      errorField.classList.add('errors--off');
+    }
+
+    if (!valueField.classList.contains('text-control--off')){
+      valueField.classList.add('text-control--off');
+    }
+  }
+}
 /*******************Function for validate each box********************/
-function validateFirst() {
-  const result = firstNameField.value !== '' && firstNameField.value.length >= 2;
-  if (!result) {
-    errorFirst.classList.add('errors--off');
-    firstNameField.classList.add('text-control--off');
-  }
-  else {
-    errorFirst.classList.remove('errors--off');
-    firstNameField.classList.remove('text-control--off');
-  }
-  return result;
+function validateFirstName() {
+  const isValid = firstNameField.value !== '' && firstNameField.value.length >= 2;
+  updateErrorMessage(firstNameField, errorFirst, isValid);
+  return isValid;
 }
 
-function validateLast() {
-  const result = lastNameField.value !== '' && lastNameField.value.length >= 2;
-  if (!result) {
-    errorLast.classList.add ('errors--off');
-    lastNameField.classList.add('text-control--off');
-  }
-  else {
-    errorLast.classList.remove('errors--off');
-    lastNameField.classList.remove('text-control--off');
-  }
-  return result;
+
+function validateLastName() {
+  const isValid = lastNameField.value !== '' && lastNameField.value.length >= 2;
+  updateErrorMessage(lastNameField, errorLast, isValid);
+  return isValid;
 }
 
 function validateEmail() {
-  const result = emailField.value.match(formatMail) !== null;
-  if (!result) {
-    errorEmail.classList.add('errors--off');
-    emailField.classList.add('text-control--off');
-  }
-  else {
-    errorEmail.classList.remove('errors--off');
-    emailField.classList.remove('text-control--off');
-  }
-  return result;
+  const isValid = emailField.value.match(formatMail) !== null;
+  updateErrorMessage(emailField, errorEmail, isValid);
+  return isValid;
 }
 
 function validateBirthDate() {
-  const result = birthDateField.value.match(formatDate)!== null;
-  if (!result) {
-    errorBirthdate.classList.add('errors--off');
-  }
-  else {
-    errorBirthdate.classList.remove('errors--off');
-  }
-  return result;
+  const isValid = birthDateField.value.match(formatDate)!== null;
+  updateErrorMessage(birthDateField, errorBirthdate, isValid);
+  return isValid;
 }
 
 function validateTournois() {
-  const result = tournoisField.value.match(formatNumbers)!== null;
-  if (!result) {
-    errorTournois.classList.add('errors--off');
-  }
-  else {
-    errorTournois.classList.remove('errors--off');
-  }
-  return result;
+  const isValid = tournoisField.value.match(formatNumbers)!== null;
+  updateErrorMessage(tournoisField, errorTournois, isValid);
+  return isValid;
 }
 
 function validateLocation() {
-  const result = location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked;
-  if (!result) {
-    errorLocation.classList.add('errors--off');
-  }
-  else {
-    errorLocation.classList.remove('errors--off');
-  }
-  return result;
+  const isValid = location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked;
+  updateErrorMessage(locationField, errorLocation, isValid);
+  return isValid;
 }
 
 function validateCheckbox() {
-  const result = checkbox1.checked;
-  if (!result) {
-    errorCheckbox.classList.add('errors--off');
-  }
-  else {
-    errorCheckbox.classList.remove('errors--off');
-  }
-  return result; 
+  const isValid = checkbox1.checked;
+  updateErrorMessage(checkboxField, errorCheckbox, isValid);
+  return isValid;
 }
 
-/*****************Enable or disable the submit button*****************/
-/**************All boxes must be valid to enable button***************/
+// /*****************Enable or disable the submit button*****************/
+// /**************All boxes must be valid to enable button***************/
 function isValid() {
-
-  return !!(validateFirst()
-  & validateLast()
+  return !!(
+  validateFirstName()
+  & validateLastName()
   & validateEmail()
   & validateBirthDate()
   & validateTournois()
