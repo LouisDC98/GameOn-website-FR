@@ -24,7 +24,12 @@ closeModalBtn.addEventListener('click', closeModal);
 
 /*****************Add or remove the bground class*****************/
 function closeModal () {
-  modalbg.classList.toggle('bground--visible');
+  if(modalbg.classList.contains('bground--visible')) {
+    modalbg.classList.remove('bground--visible');
+  }
+  else {
+    modalbg.classList.add('bground--visible');
+  }
 }
 
 /****************************************************************/
