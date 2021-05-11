@@ -83,6 +83,10 @@ let errorCheckbox = document.getElementById('messageCheckbox');
   }
 }
 /*******************Function for validate each box********************/
+
+// Call function isValid when form is submit
+form.addEventListener('submit', isValid);
+
 function validateFirstName() {
   const isValid = firstNameField.value !== '' && firstNameField.value.length >= 2;
   updateErrorMessage(firstNameField, errorFirst, isValid);
@@ -129,11 +133,43 @@ function validateCheckbox() {
 /**************All boxes must be valid to enable button***************/
 function isValid() {
   return (0 !== (
-  validateFirstName()
-  & validateLastName()
-  & validateEmail()
-  & validateBirthDate()
-  & validateTournois()
-  & validateLocation()
-  & validateCheckbox()));
+    validateFirstName()
+    & validateLastName()
+    & validateEmail()
+    & validateBirthDate()
+    & validateTournois()
+    & validateLocation()
+    & validateCheckbox()));
+  }
+
+/*********************************************************************/
+/****************Display and close validation message*****************/
+/*********************************************************************/
+
+const validationSub = document.getElementById('validation-sub');
+const submitBtn = document.getElementById('subBtn');
+
+// Call function addValidationModal when submiBtn pressed
+submitBtn.addEventListener('click', addValidationModal);
+
+/*************Close field modal and open validation modal*************/
+function addValidationModal() {
+  if (isValid() === true) {
+    modalbg.classList.remove('bground--visible');
+    validationSub.classList.add('validation-body--vis');
+  }  
+}
+
+const closeValid = document.getElementById('close-valid');
+const closeValidBtn = document.getElementById('close-valid-btn');
+
+// Call function closeValidationModal when closeValid or closeValidBtn pressed
+closeValid.addEventListener('click', closeValidationModal);
+closeValidBtn.addEventListener('click', closeValidationModal);
+
+/*************Close validation modal*************/
+function closeValidationModal() {
+  if(validationSub.classList.contains('validation-body--vis')) {
+    validationSub.classList.remove('validation-body--vis');
+  }
 }

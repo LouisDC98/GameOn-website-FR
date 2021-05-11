@@ -58,7 +58,6 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return isValid();"
               id="form"
             >
               <div
@@ -207,13 +206,22 @@
               </div>
               <input
                 class="btn-submit"
-                type="submit"
+                type="button"
                 class="button"
                 value="C'est parti"
                 id="subBtn"
               />
             </form>
           </div>
+        </div>
+      </div>
+      <div class="validation-body--hide" id="validation-sub">
+        <div class="content">
+          <span class="close" id="close-valid"></span>
+          <div class="content__text">
+            Merci d'avoir enregistré vos informations.
+          </div>
+          <input class="btn-close" type="button" class="button" value="Fermer" id="close-valid-btn"/>
         </div>
       </div>
     </main>
