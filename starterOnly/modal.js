@@ -13,12 +13,14 @@ function editNav() {
 
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeModalBtn = document.getElementById('close');   // Define X button as 'close' 
+// Define X button as 'close' 
+const closeModalBtn = document.getElementById('close');   
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
-closeModalBtn.addEventListener('click', closeModal);      // Call function closeModal when X pressed
+
+// Call function closeModal when X pressed
+closeModalBtn.addEventListener('click', closeModal);      
 
 /*****************Add or remove the bground class*****************/
 function closeModal () {
@@ -29,38 +31,32 @@ function closeModal () {
 /********************Validate or not the form********************/
 /****************************************************************/
 
-const form = document.getElementById('form') ;                 // Define form as 'form'
-const firstNameField = document.getElementById('first') ;      // Define input first as 'firstNameField'
-const lastNameField = document.getElementById('last') ;        // Define input last as 'lastNameField'
-const emailField = document.getElementById('email');           // Define input email as 'email'
-const birthDateField = document.getElementById('birthdate');   // Define birthdate as 'birthdate'
-const tournoisField = document.getElementById('quantity');     // Define input quantity as 'tournois'
-const location1 = document.getElementById('location1') ;       // Define radio 1 as 'location1'
-const location2 = document.getElementById('location2');        // Define radio 2 as 'location2'
-const location3 = document.getElementById('location3');        // Define radio 3 as 'location3'
-const location4 = document.getElementById('location4');        // Define radio 4 as 'location4'
-const location5 = document.getElementById('location5');        // Define radio 5 as 'location5'
-const location6 = document.getElementById('location6');        // Define radio 6 as 'location6'
-const locationField = document.getElementById('location');  
-const checkbox1 = document.getElementById('checkbox1');        // Define checkbox 1 as 'checkbox1'
-const checkboxField = document.getElementById('checkbox');  
-
+// Define all const used for validate each field
+const form = document.getElementById('form');
+const firstNameField = document.getElementById('first');
+const lastNameField = document.getElementById('last');
+const emailField = document.getElementById('email');
+const birthDateField = document.getElementById('birthdate');
+const tournoisField = document.getElementById('quantity');
+const locationField = document.getElementById('location');
+const checkbox1 = document.getElementById('checkbox1');
+const checkboxField = document.getElementById('checkbox');
 
 // Regex which accept mail format
-const formatMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/; 
+const formatMail = /^[^@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/; 
 // Regex with only numbers
 const formatNumbers = /^[0-9]+$/;  
 // Regex with numbers and -
 const formatDate = /[0-9]\-/;                               
 
 /**************Variables for add or remove error class****************/
-let errorFirst = document.getElementById ('messageFirst');
-let errorLast = document.getElementById ('messageLast');
-let errorEmail = document.getElementById ('messageEmail');
-let errorBirthdate = document.getElementById ('messageBirthdate');
-let errorTournois = document.getElementById ('messageTournois');
-let errorLocation = document.getElementById ('messageLocation');
-let errorCheckbox = document.getElementById ('messageCheckbox');
+let errorFirst = document.getElementById('messageFirst');
+let errorLast = document.getElementById('messageLast');
+let errorEmail = document.getElementById('messageEmail');
+let errorBirthdate = document.getElementById('messageBirthdate');
+let errorTournois = document.getElementById('messageTournois');
+let errorLocation = document.getElementById('messageLocation');
+let errorCheckbox = document.getElementById('messageCheckbox');
 
  function updateErrorMessage(valueField, errorField, isValid) {
    if (isValid) {
@@ -83,7 +79,6 @@ function validateFirstName() {
   updateErrorMessage(firstNameField, errorFirst, isValid);
   return isValid;
 }
-
 
 function validateLastName() {
   const isValid = lastNameField.value !== '' && lastNameField.value.length >= 2;
@@ -110,7 +105,7 @@ function validateTournois() {
 }
 
 function validateLocation() {
-  const isValid = location1.checked || location2.checked || location3.checked || location4.checked || location5.checked || location6.checked;
+  const isValid = document.querySelectorAll('input[name="location"]:checked').length > 0;
   updateErrorMessage(locationField, errorLocation, isValid);
   return isValid;
 }
@@ -121,15 +116,15 @@ function validateCheckbox() {
   return isValid;
 }
 
-// /*****************Enable or disable the submit button*****************/
-// /**************All boxes must be valid to enable button***************/
+/*****************Enable or disable the submit button*****************/
+/**************All boxes must be valid to enable button***************/
 function isValid() {
-  return !!(
+  return (0 !== (
   validateFirstName()
   & validateLastName()
   & validateEmail()
   & validateBirthDate()
   & validateTournois()
   & validateLocation()
-  & validateCheckbox());
+  & validateCheckbox()));
 }
