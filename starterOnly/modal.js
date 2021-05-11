@@ -65,8 +65,12 @@ let errorCheckbox = document.getElementById('messageCheckbox');
 
  function updateErrorMessage(valueField, errorField, isValid) {
    if (isValid) {
-     errorField.classList.remove('errors--off');
-     valueField.classList.remove('text-control--off');
+     if (errorField.classList.contains('errors--off')) {
+      errorField.classList.remove('errors--off');
+     }
+    if (valueField.classList.contains('text-control--off')) {
+      valueField.classList.remove('text-control--off');
+     }
    }
    else {
     if (!errorField.classList.contains('errors--off')){
