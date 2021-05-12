@@ -14,17 +14,17 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 // Define X button as 'close' 
-const closeModalBtn = document.getElementById('close');   
+const closeModalBtn = document.getElementById('close');
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", displayMainModal));
 
 // Call function closeModal when X pressed
-closeModalBtn.addEventListener('click', closeModal);      
+closeModalBtn.addEventListener('click', displayMainModal);
 
 /*****************Add or remove the bground class*****************/
-function closeModal () {
-  if(modalbg.classList.contains('bground--visible')) {
+function displayMainModal() {
+  if (modalbg.classList.contains('bground--visible')) {
     modalbg.classList.remove('bground--visible');
   }
   else {
@@ -48,11 +48,11 @@ const checkbox1 = document.getElementById('checkbox1');
 const checkboxField = document.getElementById('checkbox');
 
 // Regex which accept mail format
-const formatMail = /^[^@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/; 
+const formatMail = /^[^@]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
 // Regex with only numbers
-const formatNumbers = /^[0-9]+$/;  
+const formatNumbers = /^[0-9]+$/;
 // Regex with numbers and -
-const formatDate = /[0-9]\-/;                               
+const formatDate = /[0-9]\-/;
 
 /**************Variables for add or remove error class****************/
 let errorFirst = document.getElementById('messageFirst');
@@ -63,21 +63,21 @@ let errorTournois = document.getElementById('messageTournois');
 let errorLocation = document.getElementById('messageLocation');
 let errorCheckbox = document.getElementById('messageCheckbox');
 
- function updateErrorMessage(valueField, errorField, isValid) {
-   if (isValid) {
-     if (errorField.classList.contains('errors--off')) {
+function updateErrorMessage(valueField, errorField, isValid) {
+  if (isValid) {
+    if (errorField.classList.contains('errors--off')) {
       errorField.classList.remove('errors--off');
-     }
+    }
     if (valueField.classList.contains('text-control--off')) {
       valueField.classList.remove('text-control--off');
-     }
-   }
-   else {
-    if (!errorField.classList.contains('errors--off')){
+    }
+  }
+  else {
+    if (!errorField.classList.contains('errors--off')) {
       errorField.classList.add('errors--off');
     }
 
-    if (!valueField.classList.contains('text-control--off')){
+    if (!valueField.classList.contains('text-control--off')) {
       valueField.classList.add('text-control--off');
     }
   }
@@ -106,13 +106,13 @@ function validateEmail() {
 }
 
 function validateBirthDate() {
-  const isValid = birthDateField.value.match(formatDate)!== null;
+  const isValid = birthDateField.value.match(formatDate) !== null;
   updateErrorMessage(birthDateField, errorBirthdate, isValid);
   return isValid;
 }
 
 function validateTournois() {
-  const isValid = tournoisField.value.match(formatNumbers)!== null;
+  const isValid = tournoisField.value.match(formatNumbers) !== null;
   updateErrorMessage(tournoisField, errorTournois, isValid);
   return isValid;
 }
@@ -132,7 +132,7 @@ function validateCheckbox() {
 /*****************Enable or disable the submit button*****************/
 /**************All boxes must be valid to enable button***************/
 function isValid() {
-  return (0 !== (
+  return (1 === (
     validateFirstName()
     & validateLastName()
     & validateEmail()
@@ -140,7 +140,7 @@ function isValid() {
     & validateTournois()
     & validateLocation()
     & validateCheckbox()));
-  }
+}
 
 /*********************************************************************/
 /****************Display and close validation message*****************/
@@ -154,10 +154,10 @@ submitBtn.addEventListener('click', addValidationModal);
 
 /*************Close field modal and open validation modal*************/
 function addValidationModal() {
-  if (isValid() === true) {
+  if (isValid()) {
     modalbg.classList.remove('bground--visible');
     validationSub.classList.add('validation-body--vis');
-  }  
+  }
 }
 
 const closeValid = document.getElementById('close-valid');
@@ -169,7 +169,7 @@ closeValidBtn.addEventListener('click', closeValidationModal);
 
 /*************Close validation modal*************/
 function closeValidationModal() {
-  if(validationSub.classList.contains('validation-body--vis')) {
+  if (validationSub.classList.contains('validation-body--vis')) {
     validationSub.classList.remove('validation-body--vis');
   }
 }
