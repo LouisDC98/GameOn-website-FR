@@ -20,7 +20,12 @@ const formatNumbers = /^[0-9]+$/;
 // Regex with numbers and -
 const formatDate = /[0-9]\-/;
 
-/**************Variables for add or remove error class****************/
+// Call function isValid when form is submit
+form.addEventListener('submit', isValid);
+
+/*******************Function for validate each box********************/
+
+//Define all variables used for error message
 let errorFirst = document.getElementById('messageFirst');
 let errorLast = document.getElementById('messageLast');
 let errorEmail = document.getElementById('messageEmail');
@@ -48,10 +53,8 @@ function updateErrorMessage(valueField, errorField, isValid) {
     }
   }
 }
-/*******************Function for validate each box********************/
 
-// Call function isValid when form is submit
-form.addEventListener('submit', isValid);
+/*******************Function for validate each box********************/
 
 function validateFirstName() {
   const isValid = firstNameField.value !== '' && firstNameField.value.length >= 2;
